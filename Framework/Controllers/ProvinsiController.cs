@@ -26,11 +26,32 @@ namespace Framework.Controllers
         }
 
         [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Provinsi provinsi)
+        {
+            if (ModelState.IsValid)
+            {
+                myContext.Provinsis.Add(provinsi);
+                var result = myContext.SaveChanges();
+                if (result == 1)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            return (View());
+        }
+
+        [HttpGet]
         public IActionResult Edit(int Id)
         {
-            List<Provinsi> list = myContext.Provinsis.ToList();
-            Provinsi provinsi = myContext.Provinsis.Where(provinsi.idProvinsi == Id);
-            return View(provinsi);
+            var result = myContext.Provinsis.Where(c => c.idProvinsi == Id);
+            return View(result);
         }
 
         [HttpPost]
@@ -38,6 +59,22 @@ namespace Framework.Controllers
         {
             myContext.Attach(provinsi);
             myContext.Entry(provinsi).State = EntityState.Modified;
+            myContext.SaveChanges();
+            return RedirectToAction("index");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int Id)
+        {
+            var result = myContext.Provinsis.Where(c => c.idProvinsi == Id);
+            return View(result);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Provinsi provinsi)
+        {
+            myContext.Attach(provinsi);
+            myContext.Entry(provinsi).State = EntityState.Deleted;
             myContext.SaveChanges();
             return RedirectToAction("index");
         }
