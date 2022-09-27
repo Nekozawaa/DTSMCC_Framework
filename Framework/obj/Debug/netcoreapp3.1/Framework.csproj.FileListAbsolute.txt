@@ -315,6 +315,7 @@ C:\Users\Nekozawa\source\repos\DTSMCC_Framework\Framework\obj\Debug\netcoreapp3.
 C:\Users\Nekozawa\source\repos\DTSMCC_Framework\Framework\obj\Debug\netcoreapp3.1\Razor\Views\Provinsi\Create.cshtml.g.cs
 C:\Users\Nekozawa\source\repos\DTSMCC_Framework\Framework\obj\Debug\netcoreapp3.1\Razor\Views\Perusahaan\Create.cshtml.g.cs
 C:\Users\Nekozawa\source\repos\DTSMCC_Framework\Framework\obj\Debug\netcoreapp3.1\Razor\Views\Perusahaan\Edit.cshtml.g.cs
-C:\Users\Nekozawa\source\repos\DTSMCC_Framework\Framework\obj\Debug\netcoreapp3.1\Razor\Views\Perusahaan\Delete.cshtml.g.cs
 C:\Users\Nekozawa\source\repos\DTSMCC_Framework\Framework\obj\Debug\netcoreapp3.1\Razor\Views\Penempatan\Create.cshtml.g.cs
 C:\Users\Nekozawa\source\repos\DTSMCC_Framework\Framework\obj\Debug\netcoreapp3.1\Razor\Views\Penempatan\Edit.cshtml.g.cs
+C:\Users\Nekozawa\source\repos\DTSMCC_Framework\Framework\obj\Debug\netcoreapp3.1\Razor\Views\Perusahaan\Delete.cshtml.g.cs
+C:\Users\Nekozawa\source\repos\DTSMCC_Framework\Framework\obj\Debug\netcoreapp3.1\Razor\Views\Penempatan\Delete.cshtml.g.cs

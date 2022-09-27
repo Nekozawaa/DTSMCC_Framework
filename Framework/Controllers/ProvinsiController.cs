@@ -48,35 +48,71 @@ namespace Framework.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int Id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            var result = myContext.Provinsis.Where(c => c.idProvinsi == Id);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var result = await myContext.Provinsis.FindAsync(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
             return View(result);
         }
 
         [HttpPost]
-        public IActionResult Edit(Provinsi provinsi)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("idProvinsi,namaProvinsi")] Provinsi provinsi)
         {
-            myContext.Attach(provinsi);
-            myContext.Entry(provinsi).State = EntityState.Modified;
-            myContext.SaveChanges();
-            return RedirectToAction("index");
+            if (id != provinsi.idProvinsi)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    myContext.Update(provinsi);
+                    await myContext.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                        throw;
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(provinsi);
         }
 
         [HttpGet]
-        public IActionResult Delete(int Id)
+        public async Task<IActionResult> Delete(int? id)
         {
-            var result = myContext.Provinsis.Where(c => c.idProvinsi == Id);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var result = await myContext.Provinsis.FirstOrDefaultAsync(m => m.idProvinsi == id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+
             return View(result);
         }
 
-        [HttpPost]
-        public IActionResult Delete(Provinsi provinsi)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            myContext.Attach(provinsi);
-            myContext.Entry(provinsi).State = EntityState.Deleted;
-            myContext.SaveChanges();
-            return RedirectToAction("index");
+            var result = await myContext.Provinsis.FindAsync(id);
+            myContext.Provinsis.Remove(result);
+            await myContext.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

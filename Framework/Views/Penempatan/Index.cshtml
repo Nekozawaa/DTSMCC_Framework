@@ -43,8 +43,8 @@
                 @Html.DisplayFor(modelItem => item.idProvinsi)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new {id=item.idPenempatan}) |
+                @Html.ActionLink("Delete", "Delete", new {id=item.idPenempatan})
             </td>
         </tr>
 }
